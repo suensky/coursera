@@ -1,1 +1,1 @@
-# My learning notes for courera's NLP.
+# My learning notes for Coursera's NLP.
