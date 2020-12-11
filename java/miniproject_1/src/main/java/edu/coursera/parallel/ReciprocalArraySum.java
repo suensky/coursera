@@ -88,7 +88,7 @@ public final class ReciprocalArraySum {
      * This class stub can be filled in to implement the body of each task
      * created to perform reciprocal array sum in parallel.
      */
-    private static class ReciprocalArraySumTask implements Callable<Void> {
+    private static class ReciprocalArraySumTask extends RecursiveAction {
         /**
          * Starting index for traversal done by this task.
          */
@@ -129,11 +129,10 @@ public final class ReciprocalArraySum {
         }
 
         @Override
-        public Void call() throws Exception {
+        public void compute() {
             for (int i = startIndexInclusive; i < endIndexExclusive; ++i) {
                 value += 1.0 / input[i];
             }
-            return null;
         }
     }
 
@@ -168,7 +167,6 @@ public final class ReciprocalArraySum {
     protected static double parManyTaskArraySum(final double[] input,
             final int numTasks) {
         double sum = 0;
-        ForkJoinPool pool = new ForkJoinPool(numTasks);
         List<ReciprocalArraySumTask> tasks = new ArrayList<>();
         for (int i = 0; i < numTasks; ++i) {
             int startIndexInclusive = getChunkStartInclusive(i, numTasks, input.length);
@@ -176,7 +174,7 @@ public final class ReciprocalArraySum {
             tasks.add(new ReciprocalArraySumTask(startIndexInclusive, endIndexExclusive, input));
         }
 
-        pool.invokeAll(tasks);
+        ForkJoinTask.invokeAll(tasks);
         for (ReciprocalArraySumTask t : tasks) {
             sum += t.getValue();
         }
