@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: edu.coursera.parallel.SetupTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.034 sec <<< FAILURE! - in edu.coursera.parallel.SetupTest
+testSetup2(edu.coursera.parallel.SetupTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+junit.framework.AssertionFailedError: expected:<42> but was:<12>
+	at junit.framework.Assert.fail(Assert.java:47)
+	at junit.framework.Assert.failNotEquals(Assert.java:280)
+	at junit.framework.Assert.assertEquals(Assert.java:64)
+	at junit.framework.Assert.assertEquals(Assert.java:198)
+	at junit.framework.Assert.assertEquals(Assert.java:204)
+	at edu.coursera.parallel.SetupTest.testSetup2(SetupTest.java:19)
+
